@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <!-- 就算使用类的静态方法，也需要导入进来 -->
+        <import type="zxk.demo.databindingdemo.common.CommonPresenter" />
+
+        <variable
+            name="user"
+            type="zxk.demo.databindingdemo.common.User" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="changeModel"
+            android:text="change_Model" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="changeView"
+            android:text="change_View" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@={user.name}"
+            android:textSize="20sp" />
+
+        <!-- 用InverseMethod()来进行双向转换
+        而 BindingConversion 只能用来进行单向转换，用没有等号的 @{}。 -->
+        <TextView
+            android:id="@+id/age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@={CommonPresenter.switchToString(user.age)}"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+</layout>
